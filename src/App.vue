@@ -5,9 +5,21 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import LOCAL_TOKEN from "./const/token.js"
+function getToken() {
+  return (
+      LOCAL_TOKEN ||
+      process.env.VUE_APP_SPACETRADERS_TOKEN ||
+      localStorage.getItem("spacetraders_token")
+  )
+}
 
 export default {
   name: 'App',
+  mounted() {
+    console.log("Token:", getToken());
+  },
+
   components: {
     HelloWorld
   }
